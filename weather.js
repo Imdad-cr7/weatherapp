@@ -1,3 +1,4 @@
+require("dotenv").config()
 const http = require('http');
 const fs = require('fs');
 let requests = require("requests");
@@ -17,7 +18,7 @@ const replaceval = (tempval, orgval) => {
 
 const server = http.createServer((req, res) => {
     if(req.url == "/"){
-        requests('https://api.openweathermap.org/data/2.5/weather?q=Ahmedabad&appid=a1a70c6ece560bcd298782c4f3a26e0e')
+        requests(`https://api.openweathermap.org/data/2.5/weather?q=Ahmedabad&appid=${process.env.api_key}`)
             .on('data', (chunk) => {
                 const objdata = JSON.parse(chunk);
                 const arrData = [objdata];
